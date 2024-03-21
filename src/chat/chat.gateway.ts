@@ -16,7 +16,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleMessage(client: any, payload: any): void {
     console.log("message from chat", {socket_id: client.id, payload});
     // client.emit('messageResponse', 'Hello from WebSocket middleware!');
-    this.server.to('room1').emit('message_response', { message: payload.message });
+    this.server.to('room1').emit('message_response', { socket_id: client.id, message: payload.message });
   }
 
   @SubscribeMessage("ping")
